@@ -1,0 +1,11 @@
+	.data 
+hello: .asciiz "Ola Mundo"
+
+	.text
+main:	li $v0, 4 #cód. 4 para imprimir string com syscall
+	la $a0, hello #guarda em a0 o valor a ser impresso na syscall
+	syscall 
+	
+	li $v0, 10 #código para encerrar o programa
+	syscall
+	
