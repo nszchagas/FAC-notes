@@ -113,6 +113,7 @@ Algumas pseudoinstruções úteis:
   - Tradução: addi $t0, $zero, 10
 - la reg1, label: o registrador recebe o endereço apontado pelo rótulo (label).
   - Tradução: ?
+  <!-- @TODO: pesquisar -->
 - move reg1, reg2: copia o conteúdo do registrador 2 para o registrador 1.
   - Tradução: add reg1, reg2, $zero
 

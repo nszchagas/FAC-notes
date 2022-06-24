@@ -27,6 +27,9 @@ Como fazer uma syscall:
 
 Uma tabela com os códigos das principais syscalls está disponível na página A-44 do 5ª edição do livro texto.
 
+
+
+
 Exemplo: Imprimir o inteiro do registrador $s0 na tela.
 
 ```
