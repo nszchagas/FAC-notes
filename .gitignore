@@ -1,3 +1,4 @@
 *.asm
 slides
 .vscode
+*.py
