@@ -27,4 +27,4 @@ Um registrador contém um binário de 32 bits. Como tratar esse valor como um in
 
 Numa base b qualquer, um número:
 
-<img src="https://latex.codecogs.com/gif.latex?{\color{Emerald} xyzw=x\cdot b^3 + y\cdot b^2+ + z \cdot b^1 + w\cdot b^0}" />
+<img src="https://latex.codecogs.com/svg.image?{\color{Emerald}&space;xyzw=x\cdot&space;b^3&space;&plus;&space;y\cdot&space;b^2&plus;&space;&plus;&space;z&space;\cdot&space;b^1&space;&plus;&space;w\cdot&space;b^0}" title="https://latex.codecogs.com/svg.image?{\color{Emerald} xyzw=x\cdot b^3 + y\cdot b^2+ + z \cdot b^1 + w\cdot b^0}" />
