@@ -17,6 +17,7 @@ Operam entre um registrador e uma constante e são instruções presentes na arq
 Exemplo: inicializar um registrador com zero:
 
 `add $s0, $zero, $zero`
+
 `move $s0, $zero # Lembrando que move é uma pseudo instrução que não existe na arquitetura.`
 
 ## Representação de inteiros em base 2

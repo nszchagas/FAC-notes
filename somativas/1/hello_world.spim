@@ -9,4 +9,3 @@ main:
 	
 	li $v0, 10 #codigo para encerrar o programa
 	syscall
-	
