@@ -1,0 +1,33 @@
+bitparidade: # $a0 = valor
+
+# $t0 mascara 
+# $t1 contador de iterações
+# $t9 contador de bits 1 
+    add $v0, $v0, $zero
+    add $v1, $a0, $zero 
+    addi $t0, $zero, 1
+    addi $t1, $zero, 7
+    addi $t9, $zero, 0
+
+loop1: 
+    beq $t1, $zero, exit
+    and $t2, $a0, $t0
+    add $t4, $t0, $zero
+    sll $t0, $t0, 1
+    addi $t1, $t1, -1
+    bne $t4, $t2, loop1
+    addi $t9, $t9, 1
+    j loop1
+
+exit:
+
+    andi $t8, $t9, 1 # verifica se é par ou ímpar. t8 = 1 se t9 for ímpar
+    beq $t8, $zero, return
+    
+    addi $v0, $zero, 1
+    ori $v1, $a0, 128 
+
+return:
+    jr $ra
+
+

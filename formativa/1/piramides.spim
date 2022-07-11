@@ -1,0 +1,17 @@
+	.data 
+ast: .asciiz "*"
+nl:  .asciiz "\n"
+
+	.text
+main:	
+	
+	li $v0, 10 #codigo para encerrar o programa
+	syscall
+
+print_ast: 
+	li $v0, 4 #cod. 4 para imprimir string com syscall
+	la $a0, ast #guarda em a0 o valor a ser impresso na syscall
+	syscall 
+
+	jal $ra
+	
