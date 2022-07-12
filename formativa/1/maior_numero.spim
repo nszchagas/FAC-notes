@@ -1,0 +1,31 @@
+.data
+newline: .asciiz "\n"
+
+.text
+main: 
+    li $v0, 5 #cod. para ler int
+    syscall #armazena o int lido em $v0
+    add $t0, $v0, $zero #contador de iterações
+    
+    li $v0, 5
+    syscall 
+    add $s0, $v0, $zero # salva o primeiro valor em $s0
+    addi $t0, $t0, -1
+
+    loop:
+    beq $t0, $zero, exit # if (cont == 0) break;
+    addi $t0, $t0, -1
+    li $v0, 5 #cod. para ler um int
+    syscall #armazena o int lido em $v0
+    slt $t1, $s0, $v0 # t1 = s0 > v0
+    beq $t1, $zero, loop # se s0 > v0, passa para a próxima iteração
+    add $s0, $v0, $zero #guarda o valor lido em s0
+    j loop 
+
+    exit: 
+    add $a0, $s0, $zero #guarda em a0 a soma dos numeros
+    li $v0, 1 #cod. para imprimir inteiro
+    syscall #imprime o valor guardado em a0
+
+    li $v0, 10 # cod. para encerrar o programa
+    syscall
