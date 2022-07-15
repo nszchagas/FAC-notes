@@ -1,17 +1,45 @@
 	.data 
 ast: .asciiz "*"
+spc: .asciiz " "
 nl:  .asciiz "\n"
 
 	.text
 main:	
 	
+		li $v0, 5 #cód. para ler inteiro
+		syscall #inteiro lido está em $v0 (num_linhas)
+		add $s0, $zero, $v0 #num_linhas
+		add $s1, $zero, $zero # s1 = 0 (cont. de iterações)
+	loop2: 
+		sub $a1, $s0, $s1 # a1 = num_linhas - cont -> qtd. de espacos
+		la $a0, spc #salva o espaço em a0
+		jal print_qtd_chars
+
+		sll $a1, $s1, 2 #2*cont
+		addi $a1, $a1, 1 # a1 = 2*cont + 1
+		la $a0, ast 
+		jal print_qtd_chars
+
+		li $v0, 4
+		la $a0, nl
+		syscall 
+
+		slt $t0, $s1, $s0 # t0 = cont < num_linhas
+		addi $s1, $s1, 1 # cont++
+		beq $t0, $zero, loop2 
+		
+
 	li $v0, 10 #codigo para encerrar o programa
 	syscall
 
-print_ast: 
-	li $v0, 4 #cod. 4 para imprimir string com syscall
-	la $a0, ast #guarda em a0 o valor a ser impresso na syscall
-	syscall 
+print_qtd_chars: #imprime n ($a1) vezes o caracter ($a0)
+		add $t0, $zero, $zero # t0 = 0 (contador de caracteres)
+	loop:
+		li $v0, 4 #cod. 4 para imprimir string com syscall (o char já está em $a0)
+		syscall 
+		addi $t0, $t0, 1 #cont++
+		slt $t1, $t0, $a1 # t1 = cont < n
+		beq $t1, $zero, loop
 
-	jal $ra
+		jal $ra
 	

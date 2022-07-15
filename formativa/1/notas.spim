@@ -1,5 +1,6 @@
 .data
-newline: .asciiz "\n"
+conceitos: .asciiz "EDCBA"
+
 
 .text
 main: 

@@ -37,8 +37,9 @@ bitparidade: # $a0 = valor
 # $t0 mascara 
 # $t1 contador de iterações
 # $t9 contador de bits 1 
-    add $v0, $v0, $zero
-    add $v1, $a0, $zero 
+    add $v0, $v0, $zero # retorno v0 = 0 
+    add $v1, $a0, $zero # retorno v1 = a0
+    
     addi $t0, $zero, 1
     addi $t1, $zero, 7
     addi $t9, $zero, 0
