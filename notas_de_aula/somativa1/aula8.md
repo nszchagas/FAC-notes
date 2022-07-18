@@ -70,7 +70,7 @@ Exemplo:
 | --- | --- | --- | --- |
 | 6 bits | 5 bits | 5 bits | 16 bits |
 
-- O tamanho do registrador é 5 bits pois há 32 registradores (2⁵) diferentes.
+- O tamanho do registrador é 5 bits pois há 32 registradores ($2^5$) diferentes.
 
 Como armazenar números maiores do que 16 bits em um registrador? 
 
