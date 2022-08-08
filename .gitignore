@@ -2,3 +2,4 @@
 slides
 .vscode
 *.py
+*.json
