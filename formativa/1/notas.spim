@@ -7,14 +7,16 @@ main:
     syscall #armazena o int lido em $v0
     add $t0, $v0, $zero #guarda o valor lido em t0
 
-    
-    
+    li $v0, 5 #cod. para ler o segundo int
+    syscall #armazena o int lido em $v0
+    add $t1, $v0, $zero #guarda o valor lido em t1
 
-    #salvar em $a0 o endereço da string a ser impressa 
+    add $a0, $t0, $t1 #guarda em a0 a soma dos numeros
+    li $v0, 1 #cod. para imprimir inteiro
+    syscall #imprime o valor guardado em a0
 
-    print: 
-    
-    li $v0, 4 #cód. para imprimir string
+    li $v0, 4
+    la $a0, newline
     syscall
 
     li $v0, 10 # cod. para encerrar o programa
