@@ -1,0 +1,27 @@
+.data
+    c5: .float 5.0
+    c9: .float 9.0
+    c32: .float 32.0
+    nl: .asciiz "\n"
+.text
+    main:
+    li $v0, 6 # cód. para ler float
+    syscall # float lido está em $f0
+
+    l.s $f1, c5
+    l.s $f2, c9
+    l.s $f3, c32
+    
+    sub.s $f12, $f0, $f3
+    mul.s $f12, $f12, $f1
+    div.s $f12, $f12, $f2
+
+    li $v0, 2
+    syscall
+
+    li $v0, 4
+    la $a0, nl 
+    syscall 
+    
+    li $v0, 10
+    syscall
