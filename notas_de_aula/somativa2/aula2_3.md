@@ -1,4 +1,10 @@
-# Aulas 2 e 3 - Aritmética Computacional
+---
+title: "Aritmética computacional - Aulas 2 e 3"
+author: "Nicolas Chagas Souza"
+date: 11/07/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 ## Multiplicação
 
@@ -12,7 +18,7 @@
 ||1 |0 |0 |0 | |||sll $Q_3\cdot M, 1$|
 ||1 |0 |1 |1 |0 |0|0|Produto P|
 
-$ 1000_2 \times 1011_2 = 1011000_2 $
+$1000_2 \times 1011_2 = 1011000_2$
 
 Observe que o produto possui 7 bits, que corresponde à 4 bits do multiplicando + 3 shifts (4 bits do multiplicador - 1). Portanto, precisaremos de:
 
@@ -52,14 +58,16 @@ Observe que o produto possui 7 bits, que corresponde à 4 bits do multiplicando 
 
 ### Exemplo do algoritmo 2
 
-Considere `M=0110`, `Q=1101` e `P=01001110`.
+Considere `M=0010` e `Q=0011`.
+
+<!-- ![](imgs/20-24-24.png) -->
 
 <center>
 
 |Iteração|Descrição||P|
-|:-:|-|-|:-:|
+|-|-|-|:-:|
 |0|Inicialização|$\rightarrow$|00001101|
-|1|Como `P[0]=1`<br> `P[7...4]+=M`<br> `srl P, 1` |$\rightarrow$<br>$\rightarrow$<br>$\rightarrow$|00001101<br>01101101<br>00110110|
+|1|Como `P[0]=1`<br> `P[7...4]+=M`<br> `srl P, 1` |$\rightarrow$<br>$\rightarrow$ <br> $\rightarrow$|00001101<br>01101101<br>00110110|
 |2|Como `P[0]=0`<br> Mantém P<br> `srl P, 1` |$\rightarrow$<br>$\rightarrow$<br>$\rightarrow$|00110110<br>00110110<br>00011011|
 |3|Como `P[0]=1`<br> `P[7...4]+=M`<br> `srl P, 1` |$\rightarrow$<br>$\rightarrow$<br>$\rightarrow$|00011011<br>01111011<br>00111101|
 |3|Como `P[0]=1`<br> `P[7...4]+=M`<br> `srl P, 1` |$\rightarrow$<br>$\rightarrow$<br>$\rightarrow$|00111101<br>10011101<br>01001110|
