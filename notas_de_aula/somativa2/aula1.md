@@ -1,39 +1,39 @@
-# Aritmética computacional - 11/07
+---
+title: "Aritmética computacional - Aula 1"
+author: "Nicolas Chagas Souza"
+date: 11/07/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
-## Relembrando
-
-- Registradores armazenam 32 bits.
-
-- Estudamos operações sobre inteiros de 32 bits.
-
-### Números com sinal
+## Números com sinal
 
 Representação em complemento a dois: se $x$ é um inteiro positivo, então $-x=2^n-x$, onde n é o tamanho, em bits, da representação.
 
 Exemplo: Em um sistema de 4 bits, temos
 
-$ 0101_2=5_{10} $
+$0101_2=5_{10}$
 
 Obtendo o complemento a 2, temos:
 
-$ 1010 + 1 = 1011_2 = 11_{10} = 2^4-5$
+$1010 + 1 = 1011_2 = 11_{10} = 2^4-5$
 
-### Overflow (soma)
+## Overflow (soma)
 
 O overflow ocorre quando o resultado de uma soma "não cabe" na quantidade de bits disponível na arquitetura.
 
-Exemplo: a operação $ 1011_2 + 0110_2 = 10001_2 $ gera um overflow numa arquitetura de 4 bits.
+Exemplo: a operação $1011_2 + 0110_2 = 10001_2$ gera um overflow numa arquitetura de 4 bits.
 
-#### Lidando com overflow na adição
+### Lidando com overflow na adição
 
 Detectamos overflow nos seguintes casos:
 
-|Operação|Sinal do A|Sinal do B|Sinal da Soma |
-| --- | --- | --- | --- |
-|$ A+B $ | $\geq 0$ | $\geq 0 $ | $<0 $ |
-|$ A+B $| $ < 0 $ | $ < 0 $ | $ \geq 0 $ |
-|$ A-B $ | $\geq 0$ | $< 0 $ | $<0 $ |
-|$ A-B $| $ < 0 $ | $ \geq 0 $ | $ \geq 0 $ |
+|Operação|Sinal do A  |Sinal do B  |Sinal da Soma|
+| :-: | :-: | :-: | :-: |
+| A+B  | $\geq 0$ | $\geq 0$ | $< 0$     |
+| A+B  | $< 0$    | $< 0$    | $\geq 0$  |
+| A-B  | $\geq 0$ | $< 0$    | $< 0$     |
+| A-B  | $< 0$    | $\geq 0$ | $\geq 0$  |
 
 > Nunca ocorre overflow na soma de inteiros com sinais diferentes.
 
@@ -57,4 +57,4 @@ Exemplo: tratar overflow na soma de $t0 e $t1
     bne $t3, $zero, overflow
 ```
 
-> Obs: para verificar se os sinais de dois operandos são diferentes usandos o xor.
+> Obs: para verificar se os sinais de dois operandos são diferentes usamos o xor.
