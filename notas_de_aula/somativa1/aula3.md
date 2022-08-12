@@ -1,4 +1,10 @@
-# Linguagem de montagem - 20/06
+---
+title: "Linguagem de Montagem - Aula 3"
+author: "Nicolas Chagas Souza"
+date: 20/06/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 ## Relembrando
 
@@ -27,12 +33,9 @@ Como fazer uma syscall:
 
 Uma tabela com os códigos das principais syscalls está disponível na página A-44 do 5ª edição do livro texto.
 
-
-
-
 Exemplo: Imprimir o inteiro do registrador $s0 na tela.
 
-```
+```assembly
 .text:
     main:
         addi $v0, $zero, 1 # Código 1 imprime um inteiro na tela.
@@ -46,16 +49,16 @@ Um programa é um _vetor de instruções_. Cada instrução ocupa uma posição 
 
 Exemplo:
 
-    ```
-    imprime_inteiro: # Rótulo.
-        li $v0, 1
-        move $a0, $s0
-        syscall
-    ```
+```assembly
+imprime_inteiro: # Rótulo.
+    li $v0, 1
+    move $a0, $s0
+    syscall
+```
 
 ## Estrutura do programa
 
-```
+```assembly
     .data:
 ola: .asciiz "Ola Mundo\n" #O processador criará a string na memória e 'ola' é um rótulo para a primeira posição de memória ocupada pela string.
     .text:
@@ -85,17 +88,17 @@ Essas instruções acessam o endereço de memória `base + offset`. Utiliza-se a
 
 Observação: o offset é o número de bytes que precisam ser deslocados a partir do endereço base.
 
-Exemplos:
+### Exemplos
+
 Utilizando o seguinte mapeamento g em $s1, h em $s2 e o endereço base de A em $s3.
 
-1. Exemplo 1
+|C|MIPS|
+| :-: | :-: |
+| `g = h + A[8];` | `lw $t0, 32($s3) # t0 = A[8]` |
+| | `add $s1, $s2, $t0 # g = h + A[8]` |
 
-|        C        |                                  MIPS                                  |
-| :-------------: | :--------------------------------------------------------------------: |
-| `g = h + A[8];` | `lw $t0, 32($s3) # t0 = A[8]` <br />`add $s1, $s2, $t0 # g = h + A[8]` |
-
-2. Exemplo 2
-
-|          C          |                                 MIPS                                  |
-| :-----------------: | :-------------------------------------------------------------------: |
-| `A[12] = g + A[6];` | `lw $t0, 24($s3)` <br /> `add $t0, $t0, $s1` <br /> `sw $t0, 48($s3)` |
+|C|MIPS|
+| :-: | :-: |
+| `A[12] = g + A[6];` | `lw $t0, 24($s3)` |
+||`add $t0, $t0, $s1`
+||`sw $t0, 48($s3)`

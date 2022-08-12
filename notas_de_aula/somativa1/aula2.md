@@ -1,4 +1,10 @@
-# Linguagem de Montagem - 13/06
+---
+title: "Linguagem de Montagem - Aula 2"
+author: "Nicolas Chagas Souza"
+date: 13/06/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 Conjunto de instruções é o conjunto de operações que um computador é capaz de executar (ISA).
 
@@ -41,9 +47,7 @@ Exemplo:
 
 - add a, b, c # a = b + c
 
-> Princípio de Design 1:
->
-> Simplicidade favorece a regularidade.
+> Princípio de Design 1: Simplicidade favorece a regularidade
 
 ### Registrador
 
@@ -58,9 +62,7 @@ Exemplo:
 
 Por que há apenas 32 registradores?
 
-> Princípio de Design 2:
->
-> Menor é mais rápido.
+> Princípio de Design 2: Menor é mais rápido
 
 ### Tabela dos registradores
 
@@ -68,12 +70,12 @@ Por que há apenas 32 registradores?
 | :-------------: | :-------: | :----------------------------: |
 |        0        |   $zero   |       A constante zero.        |
 |        1        |    $at    |  Reservado para o assembler.   |
-|       2-3       | \$v0-\$v1 |     Resultados de função.      |
-|       4-7       | \$a0-$a3  |          Argumentos.           |
-|      8-15       | \$t0-$t7  |          Temporários.          |
-|      16-23      | \$s0-$s7  |            Salvos.             |
-|      24-25      | \$t8-$t9  |       Mais temporários.        |
-|      26-27      | \$k0-$k1  |      Reservados pelo SO.       |
+|       2-3       | $v0 - $v1 |     Resultados de função.      |
+|       4-7       | $a0 - $a3  |          Argumentos.           |
+|      8-15       | $t0 - $t7  |          Temporários.          |
+|      16-23      | $s0 - $s7  |            Salvos.             |
+|      24-25      | $t8 - $t9  |       Mais temporários.        |
+|      26-27      | $k0 - $k1  |      Reservados pelo SO.       |
 |       28        |    $gp    |        Ponteiro global.        |
 |       29        |    $sp    |      Ponteiro para pilha.      |
 |       30        |    $fp    | Ponteiro do frame de ativação. |
@@ -82,13 +84,13 @@ Por que há apenas 32 registradores?
 Exemplo:
 Código em C:
 
-```
+```C
 f = (g+h)-(i+j); // f, g, h, i, j -> $s0, $s1, $s2, $s3, $s4.
 ```
 
 MIPS:
 
-```
+```assembly
 add $t0, $s1, $s2 # $t0 = $s1+$s2
 add $t1, $s3, $s4 # $t1 = $s3+$s4
 sub $s0, $t0, $t1 # $s0 = $t0-$t1
@@ -112,8 +114,6 @@ Algumas pseudoinstruções úteis:
 - li reg1, const: o registrador recebe o valor de uma constante (Ex: li $t0, 10)
   - Tradução: addi $t0, $zero, 10
 - la reg1, label: o registrador recebe o endereço apontado pelo rótulo (label).
-  - Tradução: ?
-  <!-- @TODO: pesquisar -->
 - move reg1, reg2: copia o conteúdo do registrador 2 para o registrador 1.
   - Tradução: add reg1, reg2, $zero
 
@@ -126,7 +126,7 @@ O programa é dividido em 2 seções:
 
 Exemplo:
 
-```
+```assembly
 .data:
 
 .text:
