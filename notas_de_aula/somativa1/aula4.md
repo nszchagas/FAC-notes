@@ -1,4 +1,10 @@
-# Aula 4
+---
+title: "Linguagem de Montagem - Aula 4"
+author: "Nicolas Chagas Souza"
+date: 22/06/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 ## Relembrando
 
@@ -60,11 +66,6 @@ Em uma representação com sinal, podemos representar:
 >
 > - O zero entra o universo dos positivos, já que seu MSB é 0.
 > - Em C, utilizamos int para representar inteiros com sinal e unsigned int para inteiros sem sinal.
-
-Representação decimal:
-
--1 *
-1011 com sinal =
 
 ### Overflow
 

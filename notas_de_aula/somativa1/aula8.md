@@ -1,4 +1,10 @@
-# Aula 8 - Linguagem de montagem - 08/07
+---
+title: "Linguagem de Montagem - Aula 8"
+author: "Nicolas Chagas Souza"
+date: 08/07/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 ## Dica para o exercício de paridade
 
@@ -72,11 +78,12 @@ Exemplo:
 
 - O tamanho do registrador é 5 bits pois há 32 registradores ($2^5$) diferentes.
 
-Como armazenar números maiores do que 16 bits em um registrador? 
+Como armazenar números maiores do que 16 bits em um registrador?
 
 Exemplo: armazenando 4 milhões em um registrador.
+
 | 0000000000111101 | 0000100100000000 |
-| --- | --- |
+| :-: | :-: |
 | 16 bits | 16 bits |
 | 61 | 2304 |
 
@@ -86,7 +93,7 @@ Exemplo: armazenando 4 milhões em um registrador.
     addi $s0, $s0, 2304
 ```
 
-- Instrução load upper immediate: armazena 16 bits nos bits mais significativos de um registrador. 
+- Instrução load upper immediate: armazena 16 bits nos bits mais significativos de um registrador.
 
 ```assembly
     lui $s0, 61     # lui é uma pseudoinstrução.

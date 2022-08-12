@@ -1,6 +1,10 @@
-<<<<<<< HEAD
-
-# Aula 7 - Linguagem de montagem - 04/07/22
+---
+title: "Linguagem de Montagem - Aula 7"
+author: "Nicolas Chagas Souza"
+date: 04/07/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 ## Procedimentos
 
@@ -38,7 +42,7 @@ media(int x, int y){ # Procedimento folha, pois não faz chamada à nenhum outro
 
 ### Etapas para a chamada de um procedimento
 
-1. Armazenar os parâmetros nos registradores ($a0-$a3), se couber, e caso não caiba a passagem de argumentos deve ser feita pela memória (utilizando as instruções sw e lw).
+1. Armazenar os parâmetros nos registradores ( $a0 - $a3 ), se couber, e caso não caiba a passagem de argumentos deve ser feita pela memória (utilizando as instruções sw e lw).
 
 2. Desviar o fluxo do programa para o procedimento (jal label).
 
@@ -50,7 +54,7 @@ media(int x, int y){ # Procedimento folha, pois não faz chamada à nenhum outro
 
 4. Executar as instruções do procedimento.
 
-5. Salve o retorno do procedimento ($v0-$v1).
+5. Salve o retorno do procedimento ( $v0 - $v1 ).
 
 6. Restaure os backups.
 
@@ -82,7 +86,7 @@ A memória do computador é segmentada em 4 partes, do endereço 0 ao endereço 
 
   - pilha: cresce de cima para baixo.
 
-O registrador global stack pointer ($sp) aponta para a última posição de memória com dados na pilha, ou seja, o topo da pilha. Para armazenar dados na pilha é necessário seguir o seguinte passo a passo:
+O registrador global stack pointer ( $sp ) aponta para a última posição de memória com dados na pilha, ou seja, o topo da pilha. Para armazenar dados na pilha é necessário seguir o seguinte passo a passo:
 
 1. Abrir espaço na pilha: decrementar a quantidade necessária de bytes de $sp.
 
@@ -90,9 +94,9 @@ O registrador global stack pointer ($sp) aponta para a última posição de mem�
 
 Para restaurar os dados da pilha:
 
-1. Restaurar os dados usando lw. 
+1. Restaurar os dados usando lw.
 
-2. Restaurar o espaço da pilha: incrementar a quantidade de bytes que foram utilizadas em $sp novamente. 
+2. Restaurar o espaço da pilha: incrementar a quantidade de bytes que foram utilizadas em $sp novamente.
 
 Exemplo: armazenar e restaurar o conteúdo dos registradores $s0 e $s1 na pilha.
 

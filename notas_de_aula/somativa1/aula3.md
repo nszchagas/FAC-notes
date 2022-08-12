@@ -1,4 +1,10 @@
-# Linguagem de montagem - 20/06
+---
+title: "Linguagem de Montagem - Aula 3"
+author: "Nicolas Chagas Souza"
+date: 20/06/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
 
 ## Relembrando
 
@@ -26,9 +32,6 @@ Como fazer uma syscall:
 - Obtém o resultado, se aplicável, em $v0.
 
 Uma tabela com os códigos das principais syscalls está disponível na página A-44 do 5ª edição do livro texto.
-
-
-
 
 Exemplo: Imprimir o inteiro do registrador $s0 na tela.
 
