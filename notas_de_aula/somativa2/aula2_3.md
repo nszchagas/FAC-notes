@@ -1,7 +1,7 @@
 ---
 title: "Aritmética computacional - Aulas 2 e 3"
 author: "Nicolas Chagas Souza"
-date: 11/07/2022
+date: 18/07/2022 e 22/07/2022
 geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
 output: pdf_document
 ---

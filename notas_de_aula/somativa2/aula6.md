@@ -1,4 +1,12 @@
-# Aula 6 - Aritmética em ponto flutuante
+---
+title: "Aritmética computacional - Aula 6"
+author: "Nicolas Chagas Souza"
+date: 08/08/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
+
+
 
 ## Arredondamento
 
@@ -39,9 +47,9 @@ Além disso, existem `syscalls` utilizadas para ler e imprimir floats e doubles:
 | Serviço | Código ($v0) |Argumento | Retorno|
 | - | :-: | :-: |  :-: |
 | Imprimir float | 2 | $f12 | - |
-| Imprimir double | 3 |$f12 | - |
-| Ler float | 6 |  -|$f0 |
-| Ler double | 7 | -|$f0 |
+| Imprimir double | 3 | $f12 | - |
+| Ler float | 6 |  -| $f0 |
+| Ler double | 7 | -| $f0 |
 
 As instruções para operar com ponto flutuante seguem o seguinte padrão:
 <center>
@@ -71,7 +79,7 @@ O desvio condicional é feito em duas etapas:
 ### Comparação e desvio
 
 |Instrução|Sintaxe|Significado|
-|-|:-:|:-:|
+|:-:|:-:|:-:|
 |c.eq.s | c.eq.s $f2, $f4| =  |
 |c.ne.s | c.ne.s $f2, $f4| != |
 |c.le.s | c.le.s $f2, $f4| <= |
@@ -89,13 +97,19 @@ O desvio condicional é feito em duas etapas:
   - `bc1f label` - branch coprocessor1 label 1 if false
   - `bc1t label` - branch coprocessor1 label 1 if true
 
+\newpage
+
 Exemplo: Faça um programa para converter a escala de temperatura Fahrenheit para Celsius.
+
+---- 
 
 ```c
     float f2c(float f){
         return (5.0/9.0)*(f-32.0);
     }
 ```
+
+------
 
 ```assembly
     .data
@@ -126,3 +140,8 @@ Exemplo: Faça um programa para converter a escala de temperatura Fahrenheit par
     li $v0, 10 # código para encerrar o programa
     syscall
 ```
+\newpage 
+
+# Instruções MIPS
+
+![](imgs/21-54-32.png)

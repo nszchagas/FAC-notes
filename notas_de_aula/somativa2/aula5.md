@@ -1,4 +1,11 @@
-# Aula 5 - Ponto flutuante
+---
+title: "Aritmética computacional - Aula5 "
+author: "Nicolas Chagas Souza"
+date: 05/08/2022
+geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
+output: pdf_document
+---
+
 
 Representação de números decimais em binário:
 
@@ -50,6 +57,8 @@ registradores para representação.
 
 O padrão IEEE754 estabelece os seguintes casos particulares:
 
+![](imgs/21-20-13.png)
+<!-- 
 <table>
 <tr>
     <th colspan=2>Precisão simples</th>
@@ -99,7 +108,7 @@ O padrão IEEE754 estabelece os seguintes casos particulares:
     <td> NaN (Not a Number) </td>
 </tr>
 
-</table>
+</table> -->
 
 ### Exemplos
 
@@ -127,14 +136,10 @@ Se usássemos complemento a 2 para representar os expoentes negativos,
 perderíamos a propriedade de que os binários ordenados implicam pontos
 flutuantes ordenados. Por esse motivo, o expoente é representado por excesso.
 
-> - Precisão simples:
->
-> A representação dos expoentes válidos vai de 1 a 254, utilizamos um
+- Precisão simples: A representação dos expoentes válidos vai de 1 a 254, utilizamos um
 deslocamento (bias) de 127 unidades.
->
-> - Precisão dupla:
->
-> A representação dos expoentes válidos vai de 1 a 2046, utilizamos um
+
+- Precisão dupla: A representação dos expoentes válidos vai de 1 a 2046, utilizamos um
 deslocamento (bias) de 1023 unidades.
 
 #### $0,5_{10} = 0,1_2 = 1\times2^{-1}$
@@ -151,28 +156,16 @@ deslocamento (bias) de 1023 unidades.
 
 ### Precisão simples
 
-O menor número representável é:
+Os menor e maior números representáveis em precisão simples são:
 
 | S | E + 127    | F           | Decimal |
-|:-:|  :-:       |  :-:        | - |
+|-|-|-|-|
 | 0 | 000 0000 0 | 000 ... 0000| $1,0... \times 2^{-126} \approx 1,2\times10^{-38}$
+| 0 | 111 1111 0 | 111 ... 1111| $1,1... \times 2^{127} \approx 3,4\times10^{38}$
 
-O menor número representável é:
-
-| S | E + 127    | F           | Decimal |
-|:-:|  :-:       |  :-:        | - |
-| 0 | 111 1111 0 | 111 ... 1111| $1,111... \times 2^{127} \approx 3,4\times10^{38}$
-
-### Precisão dupla
-
-O menor número representável é:
+E em precisão dupla, temos:
 
 | S | E + 1023    | F           | Decimal |
-|:-:|  :-:       |  :-:        | - |
-| 0 | 000 0000 0000 | 000 ... 0000| $1,0... \times 2^{-1022} \approx 2,2\times10^{-308}$
-
-O menor número representável é:
-
-| S | E + 1023    | F           | Decimal |
-|:-:|  :-:       |  :-:        | - |
-| 0 | 111 1111 0000 | 111 ... 1111| $1,111... \times 2^{1023} \approx 1,8\times10^{308}$
+|:-:|:-:|:-:|:-:|
+| 0 | 000 0000 0000 | 000 ... 0000|$1,0... \times 2^{-1022} \approx 2,2\times10^{-308}$
+| 0 | 111 1111 0000 | 111 ... 1111| $1,1... \times 2^{1023} \approx 1,8\times10^{308}$
