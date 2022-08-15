@@ -1,0 +1,75 @@
+.data 
+    newline: .asciiz "\n"
+.text 
+main:
+    addi $v0, $zero, 5 
+    syscall
+    add $a0, $v0, $zero #a0 = multiplicando (M)
+
+    addi $v0, $zero, 5 
+    syscall
+    add $a1, $v0, $zero #a1 = multiplicador (Q)
+
+    jal multfac
+
+    addi $v0, $zero, 1 
+    mflo $a0
+    syscall
+
+    addi $v0, $zero, 4
+    la $a0, newline
+    syscall
+
+    addi $v0, $zero, 1
+    mfhi $a0
+    syscall
+
+    addi $v0, $zero, 10 
+    syscall #exit 
+    
+
+multfac: # M = $a0 Q = $a1 P = hi e lo
+    #@TODO: incluir sinais com xor
+
+    # hi = $s0 lo = $s1
+
+    # Inicializa P
+    add $s1, $zero, $a1 # P[31...0] = Q
+    add $s0, $zero, $zero # P[64...32] = 0
+
+    # Inicializa contador e máscaras
+    addi $t0, $zero, 1 # contador = 1 (t0)
+    addi $t1, $zero, 1 # mask1 = 00...01 (t1)
+    sll $t2, $t1, 31 # mask2 = 10...00 = 2^31 (t2) 
+    
+    # Loop
+    loop: 
+    # Se o LSB de P for 1, adiciona M ao HI (s0)
+    and $t3, $t1, $s1 # t3 = P[0]
+    beq $t3, $zero, L1 # if P[0] == 0 goto L1
+    add $s0, $s0, $a0 # P[64...32] += M 
+
+    and $t3, $s0, $t1 # t3 = HI[0]
+    srl $s0, $s0, 1  # srl HI
+    srl $s1, $s1, 1 # srl LO
+    beq $t3, $zero, L1 # if HI[0] == 0 goto L1
+    add $s1, $s1, $t2 # faz o shift do LSB de P[64...31]
+    
+    L1:    
+    slti $t3, $t0, 33  # t3 = contador < 33
+    beq $t3, $zero, exit # if contador >= 33 goto exit 
+    addi $t0, $t0, 1 #contador++
+    j loop
+
+    exit:
+    mthi $s0
+    mtlo $s1 
+
+    jr $ra     
+
+
+
+
+
+
+    

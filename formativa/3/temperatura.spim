@@ -1,0 +1,102 @@
+.data
+    c5: .float 5.0
+    c9: .float 9.0
+    c32: .float 32.0
+    c273: .float 273.15
+    nl: .asciiz "\n"
+.text
+    main:
+    
+    # Inicializa as constantes
+
+    l.s $f1, c5
+    l.s $f2, c9
+    l.s $f3, c32
+    l.s $f4, c273
+
+    # Lê as escalas
+
+    li $v0, 12 # Código para ler char
+    syscall # Char lido está em $v0
+    add $s0, $v0, $zero
+
+    li $v0, 12 # Código para ler char (\n)
+    syscall 
+
+    li $v0, 12
+    syscall
+    add $s1, $v0, $zero
+
+    li $v0, 12 # Código para ler char (\n)
+    syscall # Char lido está em $v0
+
+    li $v0, 6 # cód. para ler float
+    syscall # float lido está em $f0
+
+    sub $t0, $s0, $s1 # t0 = char origem - char destino
+    
+    slti $t1, $t0, -7 
+    bne $t1, $zero, c2k
+
+    slti $t1, $t0, -4 
+    bne $t1, $zero, f2k
+
+    slti $t1, $t0, -2 
+    bne $t1, $zero, c2f
+
+    slti $t1, $t0, 4 
+    bne $t1, $zero, f2c
+
+    slti $t1, $t0, 6 
+    bne $t1, $zero, k2f
+
+    slti $t1, $t0, 9 
+    bne $t1, $zero, k2c
+
+    exit: 
+    li $v0, 2
+    syscall
+
+    li $v0, 4
+    la $a0, nl 
+    syscall 
+    
+    li $v0, 10
+    syscall
+
+    f2k: # Entrada em #f0 retorno em $f12
+        
+        sub.s $f12, $f0, $f3
+        mul.s $f12, $f12, $f1
+        div.s $f12, $f12, $f2
+        add.s $f12, $f12, $f4
+        j exit
+
+    f2c:
+        sub.s $f12, $f0, $f3
+        mul.s $f12, $f12, $f1
+        div.s $f12, $f12, $f2
+        j exit
+
+    k2f:
+        sub.s $f12. $f0, $f4
+        mul.s $f12, $f12, $f2
+        div.s $f12, $f12, $f1
+        add.s $f12, $f12, $f3
+        j exit
+
+
+    k2c:
+        sub.s $f12. $f0, $f4
+        j exit
+
+    c2f:
+        mul.s $f12, $f0, $f2
+        div.s $f12, $f12, $f1
+        add.s $f12, $f12, $f3
+        j exit
+
+    c2k:  
+        add.s $f12, $f0, $f4
+        j exit
+

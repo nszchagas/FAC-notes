@@ -1,0 +1,10 @@
+.data
+
+.text
+    main:
+
+    li          $v0, 12 # code to read char
+    syscall             # char at $v0
+    add $s0, $v0, $zero # current scale (C, F, K)
+
+    

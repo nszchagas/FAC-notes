@@ -1,0 +1,45 @@
+.data
+    c0: .float 0.0
+    nl: .asciiz "\n"
+
+.text
+    main:
+
+    li $v0, 5
+    syscall 
+    add $t0, $v0, $zero # qtd de iterações
+
+    add $t1, $zero, $zero # contador = 0 
+    l.s $f1, c0 #inicializa soma com 0
+    l.s $f2, c0 #inicializa contador de pesos com 0
+
+    loop:
+    li $v0, 6
+    syscall 
+    mov.s $f3, $f0 # peso lido em f3
+
+    li $v0, 6
+    syscall
+
+    add.s $f2, $f2, $f3 # peso_acumulado += peso
+    mul.s $f3, $f3, $f0 # multiplica valor lido pelo peso
+    add.s $f1, $f1, $f3 # soma_acumulada += peso * valor
+    
+    addi $t1, $t1, 1 # contador ++
+    slt $t2, $t1, $t0 # t2 = cont < qtd_iterações
+    bne $t2, $zero, loop 
+
+    div.s $f12, $f1, $f2
+    li $v0, 2
+    syscall
+
+    li $v0, 10
+    syscall
+
+    
+
+
+
+
+
+
