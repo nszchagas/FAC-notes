@@ -1,7 +1,7 @@
 ---
 title: "Arquitetura de um processador - Aula 1"
 author: "Nicolas Chagas Souza"
-date: 15/08/2022
+date: 15/08/2022 e 19/08/2022
 geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
 output: pdf_document
 ---
@@ -118,14 +118,34 @@ Leem os registradores operandos, compara os operandos (usando a ULA) e calcula o
 
 `beq $s0, $s1, label`
 
-O label é uma constante: quantidade de instruções. A passagem é feita em quantidade de instruções pelo tamanho limitado de 16 bits para o label na instrução do tipo I.
+O label é um deslocamento relativo ao PC em quantidade de instruções.
+
+Observe que a passagem é feita em quantidade de instruções pelo tamanho limitado de 16 bits para o label na instrução do tipo I.
+
+Para calcular o endereço de destino após o branch, deve-se efetuar: `PC + 4 * label`, já que cada instrução tem 4 bytes.
 
 1. Lê os registradores $s0 e $s1.
-2. Compara os registradores por meio da subtração.
-3. (Enquanto calcula a comparação) Calcula o endereço de destino do desvio: PC + deslocamento * 4
-
-O deslocamento * 4 é calculado por meio de um shift de 2 bits à esquerda.
+2. Compara os registradores por meio da subtração (`$s0 - $s1 == 0 => $s0 = $s1`). A ULA contém uma flag `zero` que aponta que o resultado de uma operação foi zero.  
+3. (Enquanto calcula a comparação) Calcula o endereço de destino do desvio: PC + deslocamento * 4. A multiplicação é calculada por meio de um shift de 2 bits à esquerda.
 
 ![](imgs/09-37-33.png)
 
-A ULA possui uma flag zero que indica se o resultado da operação foi zero.
+## Compondo os elementos
+
+O caminho de dados deve ser capaz de executar as três operações em um único ciclo de clock, o início do ciclo é marcado pelo começo da etapa de fetch e o final, pela escrita no banco de registradores.
+
+- Cada elemento do caminho de dados faz uma operação por vez, por exemplo, uma ULA não faz uma subtração e uma adição ao mesmo tempo;
+- Por esse motivo existem duas memórias: de dados e de instruções, já que não é possível fazer dois acessos a memória simultaneamente.
+
+Segmentação lógica da memória
+
+||| |
+|-|:-:|-|
+| Pilha <br/> Heap (Dinâmico) |$\downarrow$ <br/> $\uparrow$
+||Estáticos| |
+||Texto| $\uparrow$ crescimento dos endereços |
+||Reservado| 0 |
+
+A Pilha e o Heap compartilham o mesmo segmento de memória.
+
+![](imgs/08-43-23.png)
