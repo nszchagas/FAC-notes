@@ -30,15 +30,24 @@ main:
 
 multfac: # M = $a0 Q = $a1 P = hi e lo
     #@TODO: incluir sinais com xor
+    # Verifica o sinal do primeiro
+    # Contador de negativos -> $t4
+    add $t4, $zero, $zero # Contador de negativos
+    
+    slti $t5, $a0, 0 # t5 = 1 se a0 < 0
+    beq $t5, $zero, testa_segundo
+    
 
-    # hi = $s0 lo = $s1
+    testa_segundo: 
 
-    # Inicializa P
+
+
+    # Inicializa P: HI = $s0 | LO = $s1
     add $s1, $zero, $a1 # P[31...0] = Q
     add $s0, $zero, $zero # P[64...32] = 0
 
     # Inicializa contador e máscaras
-    addi $t0, $zero, 1 # contador = 1 (t0)
+    addi $t0, $zero, 0 # contador = 0 (t0)
     addi $t1, $zero, 1 # mask1 = 00...01 (t1)
     sll $t2, $t1, 31 # mask2 = 10...00 = 2^31 (t2) 
     
@@ -46,17 +55,18 @@ multfac: # M = $a0 Q = $a1 P = hi e lo
     loop: 
     # Se o LSB de P for 1, adiciona M ao HI (s0)
     and $t3, $t1, $s1 # t3 = P[0]
-    beq $t3, $zero, L1 # if P[0] == 0 goto L1
+    beq $t3, $zero, L2 # if P[0] == 0 goto L1
     add $s0, $s0, $a0 # P[64...32] += M 
 
+    L2:
     and $t3, $s0, $t1 # t3 = HI[0]
     srl $s0, $s0, 1  # srl HI
     srl $s1, $s1, 1 # srl LO
     beq $t3, $zero, L1 # if HI[0] == 0 goto L1
-    add $s1, $s1, $t2 # faz o shift do LSB de P[64...31]
+    addu $s1, $s1, $t2 # faz o shift do LSB de P[64...31]
     
     L1:    
-    slti $t3, $t0, 33  # t3 = contador < 33
+    slti $t3, $t0, 31  # t3 = contador < 31
     beq $t3, $zero, exit # if contador >= 33 goto exit 
     addi $t0, $t0, 1 #contador++
     j loop
