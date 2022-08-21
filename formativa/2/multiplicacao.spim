@@ -29,18 +29,37 @@ main:
     
 
 multfac: # M = $a0 Q = $a1 P = hi e lo
-    #@TODO: incluir sinais com xor
-    # Verifica o sinal do primeiro
     # Contador de negativos -> $t4
-    add $t4, $zero, $zero # Contador de negativos
+    add $t4, $zero, $zero # Negative count
     
+    # Verifies first number signal
+
     slti $t5, $a0, 0 # t5 = 1 se a0 < 0
-    beq $t5, $zero, testa_segundo
+    beq $t5, $zero, second_test # if positive, go to second test
+    addi $t4, $t4, 1 # negatives ++
+    addi $sp, $sp, -4 #open stack to store $ra
+    sw $ra, 0($sp) # stores ra
+    jal convert_positive # $a0 = negative number 
+    lw $ra, 0($sp) # retrieves $ra
+    addi $sp, $sp, 4 # remove from stack 
+
+
+    second_test: 
+    slti $t5, $a1, 0 # t5 = 1 se a0 < 0
+    beq $t5, $zero, start
+    addi $t4, $t4, 1 # negatives ++
+    addi $sp, $sp, -4 #open stack to store $ra
+    sw $ra, 0($sp)
+    add $s0, $a0, $zero #backup a0
+    add $a0, $a1, $zero #moves a1 to a0, to call the procedure
+    jal convert_positive
+    add $a1, $a0, $zero 
+    add $a0, $s0, $zero
+    lw $ra, 0($sp)
     
+    addi $sp, $sp, 4   
 
-    testa_segundo: 
-
-
+    start:
 
     # Inicializa P: HI = $s0 | LO = $s1
     add $s1, $zero, $a1 # P[31...0] = Q
@@ -67,15 +86,28 @@ multfac: # M = $a0 Q = $a1 P = hi e lo
     
     L1:    
     slti $t3, $t0, 31  # t3 = contador < 31
-    beq $t3, $zero, exit # if contador >= 33 goto exit 
+    beq $t3, $zero, fix_signal # if contador >= 33 goto exit 
     addi $t0, $t0, 1 #contador++
     j loop
 
+    fix_signal:
+    bne $t1, $t4, exit #If negatives count = 1 => negative, else => positive
+    nor $s0, $s0, $s0 # Calculate 2's complement
+    nor $s1, $s1, $s1 
+    addi $s1, $s1, 1
+
+    
     exit:
     mthi $s0
     mtlo $s1 
 
     jr $ra     
+
+
+    convert_positive: #$a0 -> negative number
+    addi $a0, $a0, -1 # neg += 1
+    nor $a0, $a0, $a0 # neg = ! neg (nega todos bits)
+    jr $ra 
 
 
 
