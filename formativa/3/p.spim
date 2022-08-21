@@ -1,0 +1,69 @@
+.data 
+    newline: .asciiz "\n"
+.text 
+main:
+    addi $v0, $zero, 5 
+    syscall
+    add $a0, $v0, $zero #a0 = multiplicando (M)
+
+    addi $v0, $zero, 5 
+    syscall
+    add $a1, $v0, $zero #a1 = multiplicador (Q)
+
+    jal multfac
+
+    addi $v0, $zero, 1 
+    mflo $a0
+    syscall
+
+    addi $v0, $zero, 4
+    la $a0, newline
+    syscall
+
+    addi $v0, $zero, 1
+    mfhi $a0
+    syscall
+
+    addi $v0, $zero, 10 
+    syscall #exit 
+
+
+multfac:
+
+    move    $s0, $a0 
+    move    $s1, $a1 
+
+    addi    $t5, $zero,  32      # $t5 = $zero + 32
+    slt     $t6, $s0,    $zero   # $t6 = ($s0 < $zero) pode dar 1 ou 0
+    slt     $t7, $s1,    $zero   # $t6 = ($s0 < $zero) pode dar 1 ou 0
+
+    beq     $t6, $zero,  veq
+
+    nor     $s0, $s0,    $zero
+    addi    $s0, $s0,    1 # $s0 = $s0 + 1
+
+veq:
+
+    beq     $t7, $zero,  verM    # if $t7 == $zero -> verM
+    nor     $s1, $s1,    $zero
+    addi    $s1, $s1,    1       # $s1 = $t1 + 0
+
+verM:
+
+    move    $t0, $zero
+    move    $t1, $s1 # $t1 = $s1
+
+p3:
+  
+
+s:
+    beq     $t6, $t7, Ext     
+    nor     $t1, $t1, $zero  
+    nor     $t0, $t0, $zero   
+    addi    $t1, $t1, 1   
+
+Ext:
+
+    mthi $t0
+    mtlo $t1
+    jr $ra
