@@ -1,5 +1,5 @@
 ---
-title: "Arquitetura de um processador - Aula 1"
+title: "Arquitetura de um processador - Aulas 1 e 2"
 author: "Nicolas Chagas Souza"
 date: 15/08/2022 e 19/08/2022
 geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
