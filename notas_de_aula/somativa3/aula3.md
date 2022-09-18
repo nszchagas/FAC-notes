@@ -50,15 +50,15 @@ Valor dos sinais de controle para as operações.
 
 Instruções do tipo R:
 
-![](imgs/09-03-01.png)
+![Instruções do tipo R](imgs/09-03-01.png)
 
 Instrução load:
 
-![](imgs/09-03-38.png)
+![Instrução load](imgs/09-03-38.png)
 
 Instrução beq:
 
-![](imgs/09-10-02.png)
+![Instrução beq](imgs/09-10-02.png)
 
 ## Problemas de desempenho
 

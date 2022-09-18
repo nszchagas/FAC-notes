@@ -9,7 +9,9 @@ output: pdf_document
 ## Na aula anterior
 
 Mapeamento direto de memória
+
 Dados
+
 |||
 |-|-|
 |Memória principal|$2^t$ bytes|
@@ -17,6 +19,7 @@ Dados
 |Blocos|$2^b$ bytes|
 
 O endereço de memória principal é dado por
+
 |Tag| Linha cache | Bloco |
 |-|-|-|
 |$t-n-b$ bits|$n$ bits| $b$ bits|
@@ -50,9 +53,9 @@ Obs: são dados o tamanho (dados) da cache, o tamanho de um bloco e o tamanho da
 
 Quantos bits são necessários para uma memória cache diretamente mapeada com 16KiB de dados e blocos de 32B, considerando que a memória principal possui 4GiB?
 
-Dados = $ 16 KiB = 2^4 \times 2^{10} B = 2^{14} B $
+Dados = $16 KiB = 2^4 \times 2^{10} B = 2^{14} B$
 
-Blocos = $ 32 B = 2^5 \times  B $
+Blocos = $32 B = 2^5 \times  B$
 
 Principal = $4 GiB = 2^2 \times 2^{30} B = 2^{32} B$
 
@@ -66,7 +69,7 @@ b = 5
 
 Tag = 32 - 9 - 5 = 18 bits
 
-Dados = $16 KiB = 2^4 \times 2^{10} B = 2^{14} B = 2^{17} bits$
+Dados = $16 KiB = 2^{4} \times 2^{10} B = 2^{14} B = 2^{17} bits$
 
 Dados por linha = $2^{17} \div 2^{9} = 8$
 
@@ -81,4 +84,3 @@ $\frac{256+19}{16} KiB$
 $\frac{256}{16} + \frac{19}{16} KiB$
 
 $16 + 1,18 KiB = 17,18 KiB$
-
