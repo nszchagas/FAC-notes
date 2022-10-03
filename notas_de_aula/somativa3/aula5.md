@@ -1,6 +1,6 @@
 ---
-title: Hierarquia de Memória - Aula 5"
-author: "Nicolas Chagas Souza"
+title: Hierarquia de Memória - Aula 5
+author: Nicolas Chagas Souza
 date: 05/09/2022
 geometry: left=2cm,right=2cm,top=1cm,bottom=2cm
 output: pdf_document
